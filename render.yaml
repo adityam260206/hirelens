@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: hirelens-backend
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: backend
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npx prisma migrate deploy && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: COOKIE_NAME
+        value: hirelens_session
+      - key: FRONTEND_URL
+        sync: false
+      - key: AI_PROVIDER
+        value: mock
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        value: claude-sonnet-5
+      - key: STORAGE_DRIVER
+        value: local
+      - key: LOCAL_STORAGE_DIR
+        value: ./uploads
+      - key: RATE_LIMIT_WINDOW_MS
+        value: "900000"
+      - key: RATE_LIMIT_MAX
+        value: "300"
