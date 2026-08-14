@@ -14,7 +14,7 @@ function setSessionCookie(res: Response, userId: string, role: Parameters<typeof
   res.cookie(env.COOKIE_NAME, token, {
     httpOnly: true,
     secure: isProduction,
-    sameSite: "lax",
+    sameSite: isProduction ? "none" : "lax",
     maxAge: SESSION_COOKIE_MAX_AGE_MS,
     path: "/",
   });
