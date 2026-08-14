@@ -21,11 +21,15 @@ services:
       - key: FRONTEND_URL
         sync: false
       - key: AI_PROVIDER
-        value: anthropic
+        value: gemini
       - key: ANTHROPIC_API_KEY
         sync: false
       - key: ANTHROPIC_MODEL
         value: claude-sonnet-5
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-flash-latest
       - key: STORAGE_DRIVER
         value: local
       - key: LOCAL_STORAGE_DIR

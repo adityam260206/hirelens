@@ -13,9 +13,11 @@ const envSchema = z
     JWT_EXPIRES_IN: z.string().default("7d"),
     COOKIE_NAME: z.string().default("hirelens_session"),
 
-    AI_PROVIDER: z.enum(["anthropic", "mock"]).default("anthropic"),
+    AI_PROVIDER: z.enum(["anthropic", "gemini", "mock"]).default("anthropic"),
     ANTHROPIC_API_KEY: z.string().optional().default(""),
     ANTHROPIC_MODEL: z.string().default("claude-sonnet-5"),
+    GEMINI_API_KEY: z.string().optional().default(""),
+    GEMINI_MODEL: z.string().default("gemini-flash-latest"),
 
     STORAGE_DRIVER: z.enum(["local", "cloudinary"]).default("local"),
     LOCAL_STORAGE_DIR: z.string().default("./uploads"),
@@ -33,6 +35,13 @@ const envSchema = z
           code: z.ZodIssueCode.custom,
           path: ["ANTHROPIC_API_KEY"],
           message: "ANTHROPIC_API_KEY is required in production when AI_PROVIDER=anthropic",
+        });
+      }
+      if (!data.GEMINI_API_KEY && data.AI_PROVIDER === "gemini") {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["GEMINI_API_KEY"],
+          message: "GEMINI_API_KEY is required in production when AI_PROVIDER=gemini",
         });
       }
       if (data.STORAGE_DRIVER === "cloudinary" && !data.CLOUDINARY_API_SECRET) {
@@ -62,4 +71,7 @@ function loadEnv() {
 export const env = loadEnv();
 
 export const isProduction = env.NODE_ENV === "production";
-export const isAiMocked = env.AI_PROVIDER === "mock" || env.ANTHROPIC_API_KEY.length === 0;
+export const isAiMocked =
+  env.AI_PROVIDER === "mock" ||
+  (env.AI_PROVIDER === "anthropic" && env.ANTHROPIC_API_KEY.length === 0) ||
+  (env.AI_PROVIDER === "gemini" && env.GEMINI_API_KEY.length === 0);
