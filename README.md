@@ -3,73 +3,114 @@
 **From resume to offer — one intelligent hiring workspace.**
 
 An AI-powered recruitment and applicant-tracking platform built around **explainable
-candidate intelligence**: every match score is backed by structured evidence, skill
-gaps are surfaced rather than hidden, and hiring decisions stay with human recruiters.
-
-> This README is updated as each build phase lands. See [Project status](#project-status)
-> for what's implemented today vs. planned.
+candidate intelligence**: every match score is backed by structured, per-skill evidence
+(not just an LLM's opinion), skill gaps are surfaced rather than hidden, and hiring
+decisions stay with human recruiters.
 
 ---
 
-## Table of contents
+## 🔗 Live deployment
 
-1. [Project status](#project-status)
-2. [Architecture](#architecture)
-3. [Tech stack](#tech-stack)
-4. [Repository structure](#repository-structure)
-5. [Local setup](#local-setup)
-6. [Environment variables](#environment-variables)
-7. [Database](#database)
-8. [Running the app](#running-the-app)
-9. [Known limitations](#known-limitations)
+| | |
+|---|---|
+| **App (frontend)** | **[hirelens-pearl.vercel.app](https://hirelens-pearl.vercel.app)** |
+| **API (backend)** | [hirelens-backend-ubtq.onrender.com/api/v1](https://hirelens-backend-ubtq.onrender.com/api/v1) |
+| **API health check** | [hirelens-backend-ubtq.onrender.com/api/v1/health](https://hirelens-backend-ubtq.onrender.com/api/v1/health) |
+| **Source** | [github.com/adityam260206/hirelens](https://github.com/adityam260206/hirelens) |
 
----
+> ⏱️ **First load may be slow.** The backend runs on Render's free tier, which spins
+> down after ~15 minutes of no traffic. The first request after idle takes 30–60s to
+> wake up (cold start) — this is a hosting-tier characteristic, not a bug. Subsequent
+> requests are fast.
 
-## Project status
+### Demo credentials
 
-Built in phases, each one a working increment (see `docs/` for the full phase plan).
+All three roles are pre-seeded on the live deployment under one company
+(**Nimbus Technologies**), with a published job and one fully AI-analyzed application
+ready to explore immediately:
 
-| Phase | Scope | Status |
+| Role | Email | Password |
 |---|---|---|
-| 1 | Foundation — repo, frontend, backend, Postgres, Prisma, health check | ✅ Done |
-| 2 | Authentication & RBAC | 🚧 In progress |
-| 3 | Company & Jobs | ⏳ Planned |
-| 4 | Candidates & Applications | ⏳ Planned |
-| 5 | Resume upload & parsing | ⏳ Planned |
-| 6 | Explainable AI matching | ⏳ Planned |
-| 7 | Pipeline (Kanban) | ⏳ Planned |
-| 8 | Interviews & feedback | ⏳ Planned |
-| 9 | Offers | ⏳ Planned |
-| 10 | Candidate portal polish | ⏳ Planned |
-| 11 | Analytics | ⏳ Planned |
-| 12 | AI interview questions & copilot | ⏳ Planned |
-| 13–14 | Security hardening & testing | ⏳ Planned |
-| 15–16 | Seed data, docs, deployment, polish | ⏳ Planned |
+| Recruiter | `demo.recruiter@hirelens.dev` | `HireLens2026!` |
+| Interviewer | `demo.interviewer@hirelens.dev` | `HireLens2026!` |
+| Candidate | `demo.candidate@hirelens.dev` | `HireLens2026!` |
+
+Suggested walkthrough:
+1. Log in as **recruiter** → see the "Backend Engineer" and "ML Engineer" jobs, open
+   the Backend Engineer pipeline to see Alex Morgan's application with an **88/100**
+   AI match score and full skill-by-skill evidence.
+2. Log in as **candidate** → view application status from the candidate's side.
+3. Log in as **interviewer** → see what an interviewer can (and can't) access.
+4. Try registering a brand-new recruiter or candidate account — self-registration is
+   fully open.
+
+---
+
+## What's implemented
+
+| Area | Status |
+|---|---|
+| Auth & RBAC (Candidate / Recruiter / Interviewer) | ✅ |
+| Company & Jobs (draft → publish → close) | ✅ |
+| Candidate profiles & applications | ✅ |
+| Resume upload & AI parsing (PDF/DOCX) | ✅ |
+| Explainable AI matching engine (deterministic scoring + evidence) | ✅ |
+| Recruitment pipeline (drag-and-drop Kanban) | ✅ |
+| Interviews & structured feedback | ✅ |
+| Offers | ✅ |
+| Candidate portal | ✅ |
+| Recruiter analytics dashboard | ✅ |
+| AI interview question generator | ✅ |
+| RBAC / IDOR security hardening | ✅ |
+| Automated test suite | 🚧 in progress |
+| Notifications | ⏳ not built (documented gap) |
+
+## How the matching engine works
+
+The headline feature is **explainable, not just AI-flavored**. Scoring is a **pure,
+deterministic function** over parsed resume data vs. job requirements — the same
+resume and job always produce the same score, with a machine-checkable evidence array
+(`skill → matched/gap → why`). The AI layer only adds a plain-English narrative on top
+of numbers that are already final; if the AI call fails, the score and evidence are
+completely unaffected; only the narrative sentence is missing.
+
+```
+Resume + Job requirements
+        │
+        ▼
+Deterministic scorer (pure functions, no AI)
+  → overallScore, technicalScore, experienceScore, evidence[]
+        │
+        ▼
+AI narrative (optional gloss — Gemini)
+  → 2–3 sentence plain-English summary of the numbers above
+```
 
 ## Architecture
 
 ```
-Browser → Next.js (App Router) → REST API (Express) → Prisma → PostgreSQL
-                                        │
-                                        └─→ AI subsystem (provider-abstracted LLM calls)
-                                        └─→ File storage (local disk in dev / Cloudinary-ready)
+Browser → Next.js 16 (App Router) → REST API (Express) → Prisma → PostgreSQL (Neon)
+                                          │
+                                          └─→ AI subsystem (provider-abstracted)
+                                          └─→ File storage (local disk / Cloudinary-ready)
 ```
 
-Modular monolith — one deployable backend, organized into feature modules
-(`auth`, `companies`, `jobs`, `candidates`, `resumes`, `applications`, `interviews`,
-`feedback`, `offers`, `notifications`, `analytics`), not a microservice sprawl.
+Modular monolith — one deployable backend organized into feature modules (`auth`,
+`companies`, `jobs`, `candidates`, `resumes`, `applications`, `interviews`,
+`feedback`, `offers`, `analytics`, `users`), not a microservice sprawl.
 
 ## Tech stack
 
-- **Frontend:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4
-- **Backend:** Node.js, Express, TypeScript
-- **Database:** PostgreSQL 16 + Prisma ORM
-- **Validation:** Zod, on both client input and AI-generated output
+- **Frontend:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4 — deployed on Vercel
+- **Backend:** Node.js, Express, TypeScript — deployed on Render
+- **Database:** PostgreSQL (Neon, serverless) + Prisma ORM
+- **Validation:** Zod, on both client input and AI-generated output (never trust raw LLM JSON)
 - **Charts:** Recharts
-- **AI:** Anthropic Claude via a provider-abstracted interface (swappable), mock mode
-  available for offline development
+- **AI:** Google Gemini (`gemini-flash-latest`) via a provider-abstracted interface —
+  also supports Anthropic Claude and a deterministic mock mode; swap with one env var
+- **Auth:** JWT in httpOnly/sameSite cookies, bcrypt password hashing
 - **File storage:** local disk in development behind a storage interface; swappable
-  for Cloudinary/S3-equivalent in production
+  for Cloudinary in production
 
 ## Repository structure
 
@@ -91,35 +132,36 @@ hirelens/
 │       ├── config/          env validation, Prisma client
 │       ├── middleware/       auth, RBAC, error handling
 │       ├── modules/          one folder per domain module
-│       ├── ai/                AIProvider abstraction + implementations
+│       ├── ai/                AIProvider abstraction (Gemini / Anthropic / mock)
 │       └── utils/
+├── render.yaml         Render Blueprint (backend deploy config)
 ├── tools/              local Postgres binaries (dev-only, gitignored)
-├── docs/
 └── .env.example
 ```
 
-## Local setup
+## Running it locally
 
-Prerequisites: Node.js 20+, npm.
+Prerequisites: Node.js 20+, npm, a PostgreSQL database (local or hosted).
 
 ```bash
-git clone <repo>
+git clone https://github.com/adityam260206/hirelens.git
 cd hirelens
 
 # Backend
 cd backend
 npm install
-cp .env.example .env   # fill in values, see below
-npm run prisma:migrate
-npm run dev             # http://localhost:4000
+cp .env.example .env   # fill in DATABASE_URL, JWT_SECRET, and an AI key (or leave AI keys empty for mock mode)
+npx prisma migrate dev
+npm run dev              # http://localhost:4000
 
 # Frontend (separate terminal)
 cd frontend
 npm install
+echo "NEXT_PUBLIC_API_URL=http://localhost:4000/api/v1" > .env.local
 npm run dev              # http://localhost:3000
 ```
 
-## Environment variables
+### Environment variables
 
 See [`backend/.env.example`](backend/.env.example) for the full list. Key ones:
 
@@ -127,41 +169,40 @@ See [`backend/.env.example`](backend/.env.example) for the full list. Key ones:
 |---|---|
 | `DATABASE_URL` | Postgres connection string |
 | `JWT_SECRET` | Session signing secret (32+ chars) |
-| `AI_PROVIDER` | `anthropic` or `mock` |
-| `ANTHROPIC_API_KEY` | Leave empty to run AI subsystem in mock mode |
+| `AI_PROVIDER` | `gemini` \| `anthropic` \| `mock` |
+| `GEMINI_API_KEY` | Free at [aistudio.google.com](https://aistudio.google.com) — leave empty to run in mock mode |
 | `STORAGE_DRIVER` | `local` or `cloudinary` |
 
 The backend validates all required environment variables at startup with Zod and
 fails fast with a clear message if something required is missing — see
 [`backend/src/config/env.ts`](backend/src/config/env.ts).
 
-## Database
-
-Local development uses a portable PostgreSQL 16 instance (no admin rights or Docker
-required) — see [`tools/README.md`](tools/README.md) for how it's set up and how to
-start/stop it. Production points `DATABASE_URL` at any managed Postgres instance;
-nothing else changes.
-
-```bash
-cd backend
-npx prisma migrate dev      # apply migrations locally
-npx prisma studio           # browse data
-```
-
-## Running the app
-
-| Service | Command | URL |
-|---|---|---|
-| Backend API | `npm run dev` (in `backend/`) | http://localhost:4000/api/v1 |
-| Frontend | `npm run dev` (in `frontend/`) | http://localhost:3000 |
-| Health check | — | http://localhost:4000/api/v1/health |
-
 ## Known limitations
 
-- AI subsystem runs in mock mode until `ANTHROPIC_API_KEY` is supplied — see
-  `backend/.env.example`.
-- File storage defaults to local disk in development; production should set
-  `STORAGE_DRIVER=cloudinary` with real credentials.
-- This is an MVP: match scores are an evidence-based assistance signal, not a
-  guarantee of hiring outcome. See in-app copy on the match screen for the exact
-  framing shown to recruiters.
+- **Gemini free tier can be intermittently overloaded.** `gemini-flash-latest` on the
+  free tier occasionally returns `503 UNAVAILABLE` under Google's own load, causing a
+  resume parse or AI narrative to fail. The backend retries automatically with
+  exponential backoff; the deterministic match score and evidence are computed
+  independently of the AI narrative and are never affected by this. Re-uploading a
+  resume or re-triggering analysis on transient failure always works.
+- **Render free tier cold start.** ~30–60s wake-up after 15 minutes of inactivity.
+- **Automated test suite** (RBAC/IDOR, matching determinism, auth) is in progress,
+  not yet complete — correctness so far has been verified through extensive manual
+  and scripted API testing (documented via curl round-trips during development).
+- **Notifications** (email/in-app) are not implemented — an explicitly documented gap.
+- This is an MVP: match scores are an evidence-based assistance signal for recruiters,
+  not a guarantee or sole basis for a hiring decision.
+
+## Security notes
+
+- RBAC enforced server-side at both the router level (`requireRole`) and the service
+  level (ownership/company-scoping checks) — a candidate can never fetch another
+  candidate's data, and a recruiter can never fetch another company's data, regardless
+  of what IDs they guess.
+- AI prompts explicitly instruct the model to never infer or comment on protected
+  characteristics (race, religion, gender, age, disability, etc.) and treat resume
+  text strictly as data, never as instructions — resisting prompt injection embedded
+  in an uploaded resume.
+- All AI-generated structured output (parsed resume fields, interview questions) is
+  re-validated against a Zod schema after parsing — a malformed or hallucinated LLM
+  response is rejected rather than trusted.
