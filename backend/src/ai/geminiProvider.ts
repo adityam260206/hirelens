@@ -15,6 +15,22 @@ import {
 } from "./schemas";
 
 const MAX_RESUME_CHARS = 15_000;
+const RETRYABLE_STATUS_PATTERN = /"code":\s*503|UNAVAILABLE|"code":\s*429|RESOURCE_EXHAUSTED/;
+
+async function withRetry<T>(fn: () => Promise<T>, attempts = 3): Promise<T> {
+  let lastErr: unknown;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastErr = err;
+      const message = err instanceof Error ? err.message : String(err);
+      if (i === attempts - 1 || !RETRYABLE_STATUS_PATTERN.test(message)) throw err;
+      await new Promise((resolve) => setTimeout(resolve, 500 * 2 ** i));
+    }
+  }
+  throw lastErr;
+}
 
 const RESUME_RESPONSE_SCHEMA = {
   type: Type.OBJECT,
@@ -130,14 +146,16 @@ export class GeminiAIProvider implements AIProvider {
 
     let responseText: string | undefined;
     try {
-      const response = await this.client.models.generateContent({
-        model: this.modelName,
-        contents: `${RESUME_SYSTEM_PROMPT}\n\nExtract structured data from this resume:\n\n${truncated}`,
-        config: {
-          responseMimeType: "application/json",
-          responseSchema: RESUME_RESPONSE_SCHEMA,
-        },
-      });
+      const response = await withRetry(() =>
+        this.client.models.generateContent({
+          model: this.modelName,
+          contents: `${RESUME_SYSTEM_PROMPT}\n\nExtract structured data from this resume:\n\n${truncated}`,
+          config: {
+            responseMimeType: "application/json",
+            responseSchema: RESUME_RESPONSE_SCHEMA,
+          },
+        })
+      );
       responseText = response.text;
     } catch (err) {
       logger.error("Gemini resume parse request failed", {
@@ -184,10 +202,12 @@ Rules:
 - Output only the summary itself — no preamble, no repeating these instructions.`;
 
     try {
-      const response = await this.client.models.generateContent({
-        model: this.modelName,
-        contents: prompt,
-      });
+      const response = await withRetry(() =>
+        this.client.models.generateContent({
+          model: this.modelName,
+          contents: prompt,
+        })
+      );
       const text = response.text;
       if (!text) throw new Error("No text content returned");
       return text.trim().slice(0, 1000);
@@ -222,10 +242,12 @@ Rules:
 - Output only the summary — no preamble.`;
 
     try {
-      const response = await this.client.models.generateContent({
-        model: this.modelName,
-        contents: prompt,
-      });
+      const response = await withRetry(() =>
+        this.client.models.generateContent({
+          model: this.modelName,
+          contents: prompt,
+        })
+      );
       const text = response.text;
       if (!text) throw new Error("No text content returned");
       return text.trim().slice(0, 1000);
@@ -260,14 +282,16 @@ Rules:
 
     let responseText: string | undefined;
     try {
-      const response = await this.client.models.generateContent({
-        model: this.modelName,
-        contents: prompt,
-        config: {
-          responseMimeType: "application/json",
-          responseSchema: QUESTIONS_RESPONSE_SCHEMA,
-        },
-      });
+      const response = await withRetry(() =>
+        this.client.models.generateContent({
+          model: this.modelName,
+          contents: prompt,
+          config: {
+            responseMimeType: "application/json",
+            responseSchema: QUESTIONS_RESPONSE_SCHEMA,
+          },
+        })
+      );
       responseText = response.text;
     } catch (err) {
       logger.error("Gemini interview question generation request failed", {
