@@ -44,3 +44,9 @@ Thumbs.db
 # Test coverage
 coverage/
 tools/gh/
+
+# Deployment CLI credentials (Railway/Neon/GitHub/Vercel tokens) — never commit
+tools/cli-config/
+
+# Scratch build-verification directory
+scratchpad-deploy-test/
