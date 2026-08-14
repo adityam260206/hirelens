@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Local Postgres portable install (see tools/README.md)
+tools/pgsql/
+tools/pgdata/
+tools/*.zip
+
+# Env files
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env.local
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/build/
+
+# Backend build output
+backend/dist/
+
+# Prisma
+backend/prisma/*.db
+backend/prisma/migrations/dev.db
+
+# Logs
+*.log
+npm-debug.log*
+logfile.txt
+
+# Uploads (local dev file storage fallback)
+backend/uploads/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Test coverage
+coverage/
