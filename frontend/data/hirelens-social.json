@@ -1,0 +1,552 @@
+{
+  "posts": [
+    {
+      "id": "post-1791919165735-68apj",
+      "author": {
+        "id": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+        "name": "Riya Sharma",
+        "headline": "Head of Talent at Nimbus Technologies",
+        "role": "RECRUITER"
+      },
+      "content": "🚀 Excited to announce our new distributed caching microservice on HireLens! Open-sourced and ready for review.",
+      "category": "Project",
+      "tags": [
+        "DistributedSystems",
+        "OpenSource"
+      ],
+      "projectUrl": "https://github.com/adityam260206/hirelens",
+      "likes": 1,
+      "likedBy": [
+        "candidate-alex-morgan"
+      ],
+      "comments": [
+        {
+          "id": "comment-1791919167510",
+          "postId": "post-1791919165735-68apj",
+          "author": {
+            "id": "candidate-alex-morgan",
+            "name": "Alex Morgan",
+            "headline": "Full-Stack Dev",
+            "role": "CANDIDATE"
+          },
+          "content": "Fantastic architecture! How does this compare to redis cluster replication?",
+          "createdAt": "2026-10-13T19:19:27.510Z",
+          "likes": 0
+        }
+      ],
+      "shares": 0,
+      "savedBy": [],
+      "createdAt": "2026-10-13T19:19:25.735Z"
+    },
+    {
+      "id": "post-1",
+      "author": {
+        "id": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+        "name": "Riya Sharma",
+        "headline": "Head of Talent & Technical Recruiting at Nimbus Technologies",
+        "role": "RECRUITER",
+        "company": "Nimbus Technologies"
+      },
+      "content": "🚀 We are officially hiring for Backend Engineers and Machine Learning Engineers at Nimbus Technologies! \n\nAt Nimbus, we don't do black-box filtering or 6-round marathon puzzles. Every candidate who applies gets an explainable evaluation with concrete skill-by-skill evidence. \n\nKey skills we love: TypeScript, PostgreSQL, Distributed Systems, and Python for ML.\n\nCheck out the open roles on our Jobs tab or send a direct connection request if you'd like to chat!",
+      "category": "Internship & Job",
+      "tags": [
+        "Hiring",
+        "Backend",
+        "AI",
+        "TechCareers",
+        "NimbusTechnologies"
+      ],
+      "likes": 38,
+      "likedBy": [
+        "candidate-alex-morgan",
+        "user-marcus"
+      ],
+      "comments": [
+        {
+          "id": "comment-1-1",
+          "postId": "post-1",
+          "author": {
+            "id": "candidate-alex-morgan",
+            "name": "Alex Morgan",
+            "headline": "Full-Stack & Machine Learning Engineer",
+            "role": "CANDIDATE"
+          },
+          "content": "Just submitted my application for the Backend Engineer role! The skill-gap breakdown on HireLens made it super clear what areas align best.",
+          "createdAt": "2026-10-13T15:19:25.708Z",
+          "likes": 6
+        },
+        {
+          "id": "comment-1-2",
+          "author": {
+            "id": "interviewer-elena",
+            "name": "Dr. Elena Rostova",
+            "headline": "Principal Systems Architect at Nimbus Technologies",
+            "role": "INTERVIEWER"
+          },
+          "postId": "post-1",
+          "content": "Excited to meet the candidates! We have real-world engineering problems to solve in our data platform.",
+          "createdAt": "2026-10-13T17:19:25.708Z",
+          "likes": 4
+        }
+      ],
+      "shares": 12,
+      "savedBy": [
+        "candidate-alex-morgan"
+      ],
+      "createdAt": "2026-10-13T13:19:25.708Z"
+    },
+    {
+      "id": "post-2",
+      "author": {
+        "id": "candidate-alex-morgan",
+        "name": "Alex Morgan",
+        "headline": "Full-Stack & Machine Learning Engineer | Ex-Stripe Intern",
+        "role": "CANDIDATE"
+      },
+      "content": "🎉 Proud to share our new project: 'GenerateVerify — LLM Quiz Evaluation & Grounding Engine'!\n\nWe benchmarked three AI generation strategies across grounding, correctness, clarity, and cognitive-demand scores. GenerateVerify achieved 100% strongly grounded questions with high consistency.\n\nKey takeaway: Deterministic verification on top of generative models drastically reduces hallucinations compared to raw prompt chains.\n\nRepo is open source, feedback is warmly welcomed!",
+      "category": "Project",
+      "tags": [
+        "MachineLearning",
+        "OpenSource",
+        "LLM",
+        "Python",
+        "Evaluation"
+      ],
+      "projectUrl": "https://github.com/adityam260206/Content-Generator-AI",
+      "demoUrl": "http://localhost:3000",
+      "likes": 47,
+      "likedBy": [
+        "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+        "interviewer-elena"
+      ],
+      "comments": [
+        {
+          "id": "comment-2-1",
+          "postId": "post-2",
+          "author": {
+            "id": "interviewer-elena",
+            "name": "Dr. Elena Rostova",
+            "headline": "Principal Systems Architect",
+            "role": "INTERVIEWER"
+          },
+          "content": "Impressive rigor on the cognitive-demand metrics, Alex. How did you handle confounding factors in question yield?",
+          "createdAt": "2026-10-13T11:19:25.708Z",
+          "likes": 5
+        }
+      ],
+      "shares": 15,
+      "savedBy": [],
+      "createdAt": "2026-10-13T07:19:25.708Z"
+    },
+    {
+      "id": "post-3",
+      "author": {
+        "id": "interviewer-elena",
+        "name": "Dr. Elena Rostova",
+        "headline": "Principal Systems Architect at Nimbus Technologies",
+        "role": "INTERVIEWER",
+        "company": "Nimbus Technologies"
+      },
+      "content": "💡 Technical Interview Tip for 2026:\n\nWhen a senior interviewer asks you to design a high-throughput system, resist the urge to immediately say 'I will add Redis and Kafka'.\n\nInstead:\n1. Ask for SLA requirements: read vs write ratio, latency target, and consistency needs (p99 vs p50).\n2. Calculate back-of-the-envelope storage and bandwidth.\n3. Identify the true bottleneck before choosing tools.\n\nWhat is your biggest hurdle in technical interviews right now?",
+      "category": "Career Advice",
+      "tags": [
+        "CareerAdvice",
+        "SystemDesign",
+        "InterviewTips",
+        "Engineering"
+      ],
+      "poll": {
+        "id": "poll-elena-1",
+        "question": "Which part of technical interviews do you find most challenging?",
+        "options": [
+          {
+            "id": "opt-1",
+            "text": "System Design & Scaling Trade-offs",
+            "votes": 42
+          },
+          {
+            "id": "opt-2",
+            "text": "Data Structures & Live Coding",
+            "votes": 29
+          },
+          {
+            "id": "opt-3",
+            "text": "Behavioral & Conflict Stories",
+            "votes": 14
+          },
+          {
+            "id": "opt-4",
+            "text": "Salary & Level Negotiation",
+            "votes": 19
+          }
+        ],
+        "totalVotes": 104
+      },
+      "likes": 62,
+      "likedBy": [
+        "candidate-alex-morgan",
+        "user-marcus"
+      ],
+      "comments": [
+        {
+          "id": "comment-3-1",
+          "postId": "post-3",
+          "author": {
+            "id": "user-marcus",
+            "name": "Marcus Vance",
+            "headline": "Staff Cloud Engineer",
+            "role": "CANDIDATE"
+          },
+          "content": "Couldn't agree more Elena. Too many candidates default to naming buzzwords instead of analyzing failure modes.",
+          "createdAt": "2026-10-13T18:19:25.708Z",
+          "likes": 3
+        }
+      ],
+      "shares": 21,
+      "savedBy": [
+        "dada95c8-3767-4578-83ef-99a8f12fa7f4"
+      ],
+      "createdAt": "2026-10-13T01:19:25.708Z"
+    }
+  ],
+  "profiles": {
+    "dada95c8-3767-4578-83ef-99a8f12fa7f4": {
+      "id": "profile-riya",
+      "userId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "name": "Riya Sharma",
+      "headline": "Head of Talent & Technical Recruiting at Nimbus Technologies | Hiring AI & Backend Engineers",
+      "role": "RECRUITER",
+      "email": "demo.recruiter@hirelens.dev",
+      "location": "Bengaluru, India / San Francisco, CA",
+      "company": "Nimbus Technologies",
+      "about": "Passionate about hiring high-impact engineers and AI researchers with explainable skills evaluation. Leading talent operations at Nimbus Technologies. Feel free to connect for open backend, ML, and systems engineering roles!",
+      "skills": [
+        "Technical Recruiting",
+        "Talent Acquisition",
+        "Engineering Management",
+        "AI Sourcing",
+        "Interview Operations",
+        "Compensation Design"
+      ],
+      "experience": [
+        {
+          "id": "exp-1",
+          "title": "Head of Technical Recruiting",
+          "company": "Nimbus Technologies",
+          "location": "Bengaluru, India",
+          "startDate": "2023-01",
+          "current": true,
+          "description": "Leading tech hiring across AI, Cloud Infrastructure, and Core Backend teams."
+        },
+        {
+          "id": "exp-2",
+          "title": "Senior Talent Partner",
+          "company": "HyperScale Cloud",
+          "location": "Remote",
+          "startDate": "2020-04",
+          "endDate": "2022-12",
+          "description": "Scaled distributed backend teams from 20 to 120 engineers."
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-1",
+          "school": "Delhi University",
+          "degree": "Bachelor of Business Administration",
+          "field": "Human Resources & Organizational Behavior",
+          "startYear": "2016",
+          "endYear": "2019"
+        }
+      ],
+      "projects": [
+        {
+          "id": "proj-1",
+          "title": "Explainable Hiring Playbook",
+          "description": "Framework for objective skill matching and mitigating bias in technical screening.",
+          "technologies": [
+            "Recruitment Intelligence",
+            "Candidate Experience"
+          ]
+        }
+      ],
+      "profileCompletion": 95,
+      "connectionsCount": 384,
+      "savedJobIds": [],
+      "savedPostIds": []
+    },
+    "candidate-alex-morgan": {
+      "id": "profile-alex",
+      "userId": "candidate-alex-morgan",
+      "name": "Alex Morgan",
+      "headline": "Full-Stack & Machine Learning Engineer | Ex-Stripe Intern | Building LLM Eval Frameworks",
+      "role": "CANDIDATE",
+      "email": "demo.candidate@hirelens.dev",
+      "location": "Seattle, WA / Remote",
+      "company": "University of Washington",
+      "about": "Computer Science student & incoming engineer focused on distributed systems, TypeScript, Python, and explainable AI pipelines. Built multiple production web apps and open-source evaluation tools.",
+      "skills": [
+        "TypeScript",
+        "Next.js",
+        "Python",
+        "PostgreSQL",
+        "FastAPI",
+        "PyTorch",
+        "Docker",
+        "Tailwind CSS",
+        "GraphQL"
+      ],
+      "experience": [
+        {
+          "id": "exp-alex-1",
+          "title": "Software Engineering Intern",
+          "company": "Stripe",
+          "location": "Seattle, WA",
+          "startDate": "2025-06",
+          "endDate": "2025-09",
+          "description": "Optimized distributed settlement pipelines and reduced retry latency by 24%."
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-alex-1",
+          "school": "University of Washington",
+          "degree": "B.S. Computer Science",
+          "field": "Systems & Artificial Intelligence",
+          "startYear": "2022",
+          "endYear": "2026"
+        }
+      ],
+      "projects": [
+        {
+          "id": "proj-alex-1",
+          "title": "GenerateVerify — LLM Quiz Evaluation",
+          "description": "Achieved 100% strongly grounded questions and evaluated grounding, correctness, and cognitive demand across LLM strategies.",
+          "githubUrl": "https://github.com/adityam260206/Content-Generator-AI",
+          "technologies": [
+            "Python",
+            "Groq AI",
+            "FastAPI",
+            "Next.js"
+          ]
+        },
+        {
+          "id": "proj-alex-2",
+          "title": "HireLens Deterministic Matching Engine",
+          "description": "Deterministic scoring engine with skill gap analysis over structured resumes.",
+          "githubUrl": "https://github.com/adityam260206/hirelens",
+          "technologies": [
+            "TypeScript",
+            "Next.js",
+            "Express",
+            "Prisma"
+          ]
+        }
+      ],
+      "profileCompletion": 90,
+      "connectionsCount": 142,
+      "savedJobIds": [],
+      "savedPostIds": []
+    },
+    "interviewer-elena": {
+      "id": "profile-elena",
+      "userId": "interviewer-elena",
+      "name": "Dr. Elena Rostova",
+      "headline": "Principal Systems Architect & Technical Interviewer at Nimbus Technologies | Distributed Systems & High-Throughput DBs",
+      "role": "INTERVIEWER",
+      "email": "demo.interviewer@hirelens.dev",
+      "location": "San Francisco, CA",
+      "company": "Nimbus Technologies",
+      "about": "Designing fault-tolerant storage architectures and mentoring technical talent. Dedicated to evidence-backed, transparent candidate evaluation and realistic systems design interviews.",
+      "skills": [
+        "Distributed Systems",
+        "PostgreSQL Internals",
+        "Go",
+        "C++",
+        "System Design",
+        "Technical Interviewing",
+        "High Concurrency"
+      ],
+      "experience": [
+        {
+          "id": "exp-elena-1",
+          "title": "Principal Systems Architect",
+          "company": "Nimbus Technologies",
+          "startDate": "2021-02",
+          "current": true,
+          "description": "Leading core platform architecture and interviewing senior backend candidates."
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-elena-1",
+          "school": "Stanford University",
+          "degree": "Ph.D. Computer Science",
+          "field": "Distributed Data Management",
+          "startYear": "2014",
+          "endYear": "2019"
+        }
+      ],
+      "projects": [
+        {
+          "id": "proj-elena-1",
+          "title": "Raft Consensus Visualizer",
+          "description": "Interactive visual simulator for multi-node leader election and log replication.",
+          "technologies": [
+            "Go",
+            "WebAssembly",
+            "TypeScript"
+          ]
+        }
+      ],
+      "profileCompletion": 100,
+      "connectionsCount": 512,
+      "savedJobIds": [],
+      "savedPostIds": []
+    },
+    "user-marcus": {
+      "id": "profile-marcus",
+      "userId": "user-marcus",
+      "name": "Marcus Vance",
+      "headline": "Staff Cloud Engineer & DevOps Lead | Kubernetes, Terraform, Platform Engineering",
+      "role": "CANDIDATE",
+      "email": "marcus.vance@techlead.dev",
+      "location": "Austin, TX",
+      "company": "CloudScale Systems",
+      "about": "Platform engineer passionate about CI/CD acceleration, infrastructure as code, and developer productivity.",
+      "skills": [
+        "Kubernetes",
+        "AWS",
+        "Terraform",
+        "Go",
+        "GitHub Actions",
+        "Docker",
+        "Prometheus"
+      ],
+      "experience": [
+        {
+          "id": "exp-mv-1",
+          "title": "Staff Cloud Engineer",
+          "company": "CloudScale Systems",
+          "startDate": "2022-03",
+          "current": true
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-mv-1",
+          "school": "UT Austin",
+          "degree": "B.S. Electrical & Computer Engineering",
+          "field": "Computer Engineering",
+          "startYear": "2015",
+          "endYear": "2019"
+        }
+      ],
+      "projects": [],
+      "profileCompletion": 85,
+      "connectionsCount": 220,
+      "savedJobIds": [],
+      "savedPostIds": []
+    }
+  },
+  "connections": [
+    {
+      "id": "conn-1",
+      "requesterId": "candidate-alex-morgan",
+      "receiverId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "status": "ACCEPTED",
+      "createdAt": "2026-10-10T19:19:25.711Z"
+    },
+    {
+      "id": "conn-2",
+      "requesterId": "interviewer-elena",
+      "receiverId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "status": "ACCEPTED",
+      "createdAt": "2026-10-08T19:19:25.711Z"
+    },
+    {
+      "id": "conn-3",
+      "requesterId": "user-marcus",
+      "receiverId": "candidate-alex-morgan",
+      "status": "ACCEPTED",
+      "createdAt": "2026-10-11T19:19:25.711Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg-1",
+      "conversationId": "conv-alex-riya",
+      "senderId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "recipientId": "candidate-alex-morgan",
+      "text": "Hi Alex! Saw your application and the 88/100 match on our Backend Engineer role. The team was impressed by your distributed systems work.",
+      "createdAt": "2026-10-13T16:19:25.711Z",
+      "isRead": true
+    },
+    {
+      "id": "msg-2",
+      "conversationId": "conv-alex-riya",
+      "senderId": "candidate-alex-morgan",
+      "recipientId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "text": "Thank you Riya! I'm really excited about Nimbus Technologies' architecture. Looking forward to discussing further.",
+      "createdAt": "2026-10-13T17:19:25.711Z",
+      "isRead": true
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif-1791919167510",
+      "userId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "type": "POST_COMMENT",
+      "title": "New comment",
+      "message": "Alex Morgan commented on your post: \"Fantastic architecture! How does this compare to redis clust...\"",
+      "link": "/#post-1791919165735-68apj",
+      "isRead": false,
+      "createdAt": "2026-10-13T19:19:27.510Z",
+      "actor": {
+        "id": "candidate-alex-morgan",
+        "name": "Alex Morgan",
+        "headline": "Full-Stack Dev",
+        "role": "CANDIDATE"
+      }
+    },
+    {
+      "id": "notif-1791919166613",
+      "userId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "type": "POST_LIKE",
+      "title": "New reaction",
+      "message": "Alex Morgan liked your post.",
+      "link": "/#post-1791919165735-68apj",
+      "isRead": false,
+      "createdAt": "2026-10-13T19:19:26.613Z",
+      "actor": {
+        "id": "candidate-alex-morgan",
+        "name": "Alex Morgan",
+        "headline": "Candidate",
+        "role": "CANDIDATE"
+      }
+    },
+    {
+      "id": "notif-1",
+      "userId": "candidate-alex-morgan",
+      "type": "POST_LIKE",
+      "title": "New reaction",
+      "message": "Riya Sharma liked your project post 'GenerateVerify — LLM Quiz Evaluation'.",
+      "link": "/#post-2",
+      "isRead": false,
+      "createdAt": "2026-10-13T17:19:25.711Z"
+    },
+    {
+      "id": "notif-2",
+      "userId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "type": "CONNECTION_ACCEPTED",
+      "title": "Connection accepted",
+      "message": "Alex Morgan accepted your connection request.",
+      "link": "/profile/candidate-alex-morgan",
+      "isRead": true,
+      "createdAt": "2026-10-12T19:19:25.711Z"
+    }
+  ],
+  "savedJobs": {
+    "candidate-alex-morgan": [],
+    "dada95c8-3767-4578-83ef-99a8f12fa7f4": []
+  }
+}

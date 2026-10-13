@@ -14,8 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HireLens — Explainable AI Hiring",
-  description: "From resume to offer — one intelligent hiring workspace.",
+  title: "HireLens — Professional AI Career Network & Recruitment Platform",
+  description:
+    "The intelligent professional ecosystem: discover opportunities, network with engineers & recruiters, and advance your career with explainable AI candidate intelligence.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
