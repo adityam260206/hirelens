@@ -13,11 +13,13 @@ const envSchema = z
     JWT_EXPIRES_IN: z.string().default("7d"),
     COOKIE_NAME: z.string().default("hirelens_session"),
 
-    AI_PROVIDER: z.enum(["anthropic", "gemini", "mock"]).default("anthropic"),
+    AI_PROVIDER: z.enum(["anthropic", "gemini", "groq", "mock"]).default("groq"),
     ANTHROPIC_API_KEY: z.string().optional().default(""),
     ANTHROPIC_MODEL: z.string().default("claude-sonnet-5"),
     GEMINI_API_KEY: z.string().optional().default(""),
     GEMINI_MODEL: z.string().default("gemini-flash-latest"),
+    GROQ_API_KEY: z.string().optional().default(""),
+    GROQ_MODEL: z.string().default("qwen/qwen3.8-27b"),
 
     STORAGE_DRIVER: z.enum(["local", "cloudinary"]).default("local"),
     LOCAL_STORAGE_DIR: z.string().default("./uploads"),
@@ -73,5 +75,6 @@ export const env = loadEnv();
 export const isProduction = env.NODE_ENV === "production";
 export const isAiMocked =
   env.AI_PROVIDER === "mock" ||
+  (env.AI_PROVIDER === "groq" && env.GROQ_API_KEY.length === 0) ||
   (env.AI_PROVIDER === "anthropic" && env.ANTHROPIC_API_KEY.length === 0) ||
   (env.AI_PROVIDER === "gemini" && env.GEMINI_API_KEY.length === 0);

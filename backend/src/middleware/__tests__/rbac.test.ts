@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { requireRole } from "../rbac";
-import type { Request, Response, NextFunction } from "express";
+import type { Request, Response } from "express";
 import { ApiError } from "../../utils/ApiError";
 
 describe("Role-Based Access Control (RBAC) Middleware", () => {

@@ -24,7 +24,11 @@ const sampleResume: ParsedResumeData = {
   fullName: "Alex Morgan",
   email: "alex@example.com",
   phone: "+1-555-0123",
+  location: "New York, NY",
+  summary: "Full stack engineer",
   skills: ["TypeScript", "React", "Node.js", "PostgreSQL", "Docker", "Git"],
+  certifications: [],
+  languages: ["English"],
   experience: [
     {
       company: "Acme Corp",
@@ -48,8 +52,8 @@ const sampleResume: ParsedResumeData = {
       degree: "Bachelor of Science",
       fieldOfStudy: "Computer Science",
       institution: "State University",
-      startDate: "2014",
-      endDate: "2018",
+      startYear: 2014,
+      endYear: 2018,
     },
   ],
   projects: [

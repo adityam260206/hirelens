@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { parsedResumeSchema, interviewQuestionSchema, interviewQuestionsSchema } from "../../schemas";
+import { parsedResumeSchema, interviewQuestionsSchema } from "../../schemas";
 
 describe("Schema Validation of AI Outputs", () => {
   it("validates a properly structured LLM resume response", () => {
