@@ -15,9 +15,10 @@
         "OpenSource"
       ],
       "projectUrl": "https://github.com/adityam260206/hirelens",
-      "likes": 1,
+      "likes": 2,
       "likedBy": [
-        "candidate-alex-morgan"
+        "candidate-alex-morgan",
+        "dada95c8-3767-4578-83ef-99a8f12fa7f4"
       ],
       "comments": [
         {
@@ -31,6 +32,19 @@
           },
           "content": "Fantastic architecture! How does this compare to redis cluster replication?",
           "createdAt": "2026-10-13T19:19:27.510Z",
+          "likes": 0
+        },
+        {
+          "id": "comment-1791919564452",
+          "postId": "post-1791919165735-68apj",
+          "author": {
+            "id": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+            "name": "Riya Sharma",
+            "headline": "Recruiter · Nimbus Technologies",
+            "role": "RECRUITER"
+          },
+          "content": "Thanks Alex",
+          "createdAt": "2026-10-13T19:26:04.452Z",
           "likes": 0
         }
       ],
@@ -172,7 +186,7 @@
           {
             "id": "opt-3",
             "text": "Behavioral & Conflict Stories",
-            "votes": 14
+            "votes": 15
           },
           {
             "id": "opt-4",
@@ -180,12 +194,14 @@
             "votes": 19
           }
         ],
-        "totalVotes": 104
+        "totalVotes": 105,
+        "userVotedOptionId": "opt-3"
       },
-      "likes": 62,
+      "likes": 63,
       "likedBy": [
         "candidate-alex-morgan",
-        "user-marcus"
+        "user-marcus",
+        "dada95c8-3767-4578-83ef-99a8f12fa7f4"
       ],
       "comments": [
         {
@@ -469,6 +485,20 @@
       "receiverId": "candidate-alex-morgan",
       "status": "ACCEPTED",
       "createdAt": "2026-10-11T19:19:25.711Z"
+    },
+    {
+      "id": "conn-1791919497625",
+      "requesterId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "receiverId": "candidate",
+      "status": "PENDING",
+      "createdAt": "2026-10-13T19:24:57.625Z"
+    },
+    {
+      "id": "conn-1791919519820",
+      "requesterId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "receiverId": "user-marcus",
+      "status": "PENDING",
+      "createdAt": "2026-10-13T19:25:19.820Z"
     }
   ],
   "messages": [
@@ -489,9 +519,82 @@
       "text": "Thank you Riya! I'm really excited about Nimbus Technologies' architecture. Looking forward to discussing further.",
       "createdAt": "2026-10-13T17:19:25.711Z",
       "isRead": true
+    },
+    {
+      "id": "msg-1791919480364-b8il",
+      "conversationId": "candidate-dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "senderId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "recipientId": "candidate",
+      "text": "Awesome hoping for a great journey ahead",
+      "createdAt": "2026-10-13T19:24:40.364Z",
+      "isRead": false
     }
   ],
   "notifications": [
+    {
+      "id": "notif-1791919531347",
+      "userId": "interviewer-elena",
+      "type": "POST_LIKE",
+      "title": "New reaction",
+      "message": "Riya Sharma liked your post.",
+      "link": "/#post-3",
+      "isRead": false,
+      "createdAt": "2026-10-13T19:25:31.347Z",
+      "actor": {
+        "id": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+        "name": "Riya Sharma",
+        "headline": "Recruiter",
+        "role": "RECRUITER"
+      }
+    },
+    {
+      "id": "notif-1791919519820",
+      "userId": "user-marcus",
+      "type": "CONNECTION_REQUEST",
+      "title": "Connection invitation",
+      "message": "Riya Sharma invited you to connect on HireLens.",
+      "link": "/network",
+      "isRead": false,
+      "createdAt": "2026-10-13T19:25:19.820Z",
+      "actor": {
+        "id": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+        "name": "Riya Sharma",
+        "headline": "Recruiter",
+        "role": "RECRUITER"
+      }
+    },
+    {
+      "id": "notif-1791919497625",
+      "userId": "candidate",
+      "type": "CONNECTION_REQUEST",
+      "title": "Connection invitation",
+      "message": "Riya Sharma invited you to connect on HireLens.",
+      "link": "/network",
+      "isRead": false,
+      "createdAt": "2026-10-13T19:24:57.625Z",
+      "actor": {
+        "id": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+        "name": "Riya Sharma",
+        "headline": "Recruiter",
+        "role": "RECRUITER"
+      }
+    },
+    {
+      "id": "notif-1791919480364",
+      "userId": "candidate",
+      "type": "MESSAGE",
+      "title": "New message",
+      "message": "Riya Sharma: \"Awesome hoping for a great journey ahead\"",
+      "link": "/messages?c=candidate-dada95c8-3767-4578-83ef-99a8f12fa7f4",
+      "isRead": false,
+      "createdAt": "2026-10-13T19:24:40.364Z",
+      "actor": {
+        "id": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
+        "name": "Riya Sharma",
+        "headline": "Recruiter",
+        "role": "RECRUITER"
+      }
+    },
     {
       "id": "notif-1791919167510",
       "userId": "dada95c8-3767-4578-83ef-99a8f12fa7f4",
@@ -499,7 +602,7 @@
       "title": "New comment",
       "message": "Alex Morgan commented on your post: \"Fantastic architecture! How does this compare to redis clust...\"",
       "link": "/#post-1791919165735-68apj",
-      "isRead": false,
+      "isRead": true,
       "createdAt": "2026-10-13T19:19:27.510Z",
       "actor": {
         "id": "candidate-alex-morgan",
@@ -515,7 +618,7 @@
       "title": "New reaction",
       "message": "Alex Morgan liked your post.",
       "link": "/#post-1791919165735-68apj",
-      "isRead": false,
+      "isRead": true,
       "createdAt": "2026-10-13T19:19:26.613Z",
       "actor": {
         "id": "candidate-alex-morgan",
