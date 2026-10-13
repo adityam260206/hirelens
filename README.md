@@ -62,7 +62,8 @@ Suggested walkthrough:
 | Recruiter analytics dashboard | ✅ |
 | AI interview question generator | ✅ |
 | RBAC / IDOR security hardening | ✅ |
-| Automated test suite | 🚧 in progress |
+| Automated test suite (Vitest + Python unittest) | ✅ |
+| Python & TypeScript deterministic scoring engine | ✅ |
 | Notifications | ⏳ not built (documented gap) |
 
 ## How the matching engine works
@@ -159,6 +160,11 @@ cd frontend
 npm install
 echo "NEXT_PUBLIC_API_URL=http://localhost:4000/api/v1" > .env.local
 npm run dev              # http://localhost:3000
+
+# Run Automated Test Suites
+cd ../backend && npm test                     # Run Vitest test suite
+cd ../scoring_engine && python test_engine.py  # Run Python scoring engine unit tests
+python cli.py --demo                          # Run Python CLI matching evaluation
 ```
 
 ### Environment variables
@@ -186,9 +192,7 @@ fails fast with a clear message if something required is missing — see
   independently of the AI narrative and are never affected by this. Re-uploading a
   resume or re-triggering analysis on transient failure always works.
 - **Render free tier cold start.** ~30–60s wake-up after 15 minutes of inactivity.
-- **Automated test suite** (RBAC/IDOR, matching determinism, auth) is in progress,
-  not yet complete — correctness so far has been verified through extensive manual
-  and scripted API testing (documented via curl round-trips during development).
+- **Automated test suite.** Includes full Vitest test suite covering deterministic matching, AI schema validation (Zod), and RBAC authorization, plus a standalone Python test suite and CLI runner in `scoring_engine/`.
 - **Notifications** (email/in-app) are not implemented — an explicitly documented gap.
 - This is an MVP: match scores are an evidence-based assistance signal for recruiters,
   not a guarantee or sole basis for a hiring decision.
