@@ -28,7 +28,14 @@ export function createApp() {
   app.use(helmet());
   app.use(
     cors({
-      origin: env.FRONTEND_URL,
+      origin: [
+        env.FRONTEND_URL,
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:3001",
+        "https://hirelens-pearl.vercel.app",
+      ],
       credentials: true,
     })
   );

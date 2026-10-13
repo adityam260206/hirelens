@@ -8,6 +8,15 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    const backendTarget = process.env.BACKEND_PROXY_URL || "https://hirelens-backend-ubtq.onrender.com";
+    return [
+      {
+        source: "/api/v1/:path*",
+        destination: `${backendTarget}/api/v1/:path*`,
+      },
+    ];
+  },
   async headers() {
     return [
       {
